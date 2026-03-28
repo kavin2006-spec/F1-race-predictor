@@ -5,6 +5,8 @@ import json
 import os
 from sqlalchemy import create_engine
 
+from api.main import BASE_DIR
+
 engine = create_engine(
     "mssql+pyodbc://@MSI\\SQLEXPRESS/F1Database"
     "?driver=ODBC+Driver+17+for+SQL+Server"
@@ -33,11 +35,20 @@ def load_model():
         return pickle.load(f)
 
 def load_f1_context():
-    context_path = "data/f1_context.json"
-    if os.path.exists(context_path):
-        with open(context_path, "r") as f:
-            return json.load(f)
-    return {}
+    static_path  = os.path.join(BASE_DIR, "data", "f1_context_static.json")
+    dynamic_path = os.path.join(BASE_DIR, "data", "f1_context_dynamic.json")
+
+    with open(static_path, "r") as f:
+        static = json.load(f)
+
+    # Merge dynamic on top if it exists
+    if os.path.exists(dynamic_path):
+        with open(dynamic_path, "r") as f:
+            dynamic = json.load(f)
+        # Dynamic data overrides static for shared keys
+        static.update(dynamic)
+
+    return static
 
 def get_race_features(year, round_number):
     query = f"""

@@ -1,0 +1,565 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-28T12:44:28.516397",
+    "season": 2026,
+    "data_source": "Ergast API"
+  },
+  "drivers_standings": [
+    {
+      "position": 1,
+      "code": "RUS",
+      "name": "George Russell",
+      "surname": "Russell",
+      "points": 51.0,
+      "team": "Mercedes",
+      "wins": 1
+    },
+    {
+      "position": 2,
+      "code": "ANT",
+      "name": "Andrea Kimi Antonelli",
+      "surname": "Antonelli",
+      "points": 47.0,
+      "team": "Mercedes",
+      "wins": 1
+    },
+    {
+      "position": 3,
+      "code": "LEC",
+      "name": "Charles Leclerc",
+      "surname": "Leclerc",
+      "points": 34.0,
+      "team": "Ferrari",
+      "wins": 0
+    },
+    {
+      "position": 4,
+      "code": "HAM",
+      "name": "Lewis Hamilton",
+      "surname": "Hamilton",
+      "points": 33.0,
+      "team": "Ferrari",
+      "wins": 0
+    },
+    {
+      "position": 5,
+      "code": "BEA",
+      "name": "Oliver Bearman",
+      "surname": "Bearman",
+      "points": 17.0,
+      "team": "Haas F1 Team",
+      "wins": 0
+    },
+    {
+      "position": 6,
+      "code": "NOR",
+      "name": "Lando Norris",
+      "surname": "Norris",
+      "points": 15.0,
+      "team": "McLaren",
+      "wins": 0
+    },
+    {
+      "position": 7,
+      "code": "GAS",
+      "name": "Pierre Gasly",
+      "surname": "Gasly",
+      "points": 9.0,
+      "team": "Alpine F1 Team",
+      "wins": 0
+    },
+    {
+      "position": 8,
+      "code": "VER",
+      "name": "Max Verstappen",
+      "surname": "Verstappen",
+      "points": 8.0,
+      "team": "Red Bull",
+      "wins": 0
+    },
+    {
+      "position": 9,
+      "code": "LAW",
+      "name": "Liam Lawson",
+      "surname": "Lawson",
+      "points": 8.0,
+      "team": "RB F1 Team",
+      "wins": 0
+    },
+    {
+      "position": 10,
+      "code": "LIN",
+      "name": "Arvid Lindblad",
+      "surname": "Lindblad",
+      "points": 4.0,
+      "team": "RB F1 Team",
+      "wins": 0
+    },
+    {
+      "position": 11,
+      "code": "HAD",
+      "name": "Isack Hadjar",
+      "surname": "Hadjar",
+      "points": 4.0,
+      "team": "Red Bull",
+      "wins": 0
+    },
+    {
+      "position": 12,
+      "code": "PIA",
+      "name": "Oscar Piastri",
+      "surname": "Piastri",
+      "points": 3.0,
+      "team": "McLaren",
+      "wins": 0
+    },
+    {
+      "position": 13,
+      "code": "SAI",
+      "name": "Carlos Sainz",
+      "surname": "Sainz",
+      "points": 2.0,
+      "team": "Williams",
+      "wins": 0
+    },
+    {
+      "position": 14,
+      "code": "BOR",
+      "name": "Gabriel Bortoleto",
+      "surname": "Bortoleto",
+      "points": 2.0,
+      "team": "Audi",
+      "wins": 0
+    },
+    {
+      "position": 15,
+      "code": "COL",
+      "name": "Franco Colapinto",
+      "surname": "Colapinto",
+      "points": 1.0,
+      "team": "Alpine F1 Team",
+      "wins": 0
+    },
+    {
+      "position": 16,
+      "code": "OCO",
+      "name": "Esteban Ocon",
+      "surname": "Ocon",
+      "points": 0.0,
+      "team": "Haas F1 Team",
+      "wins": 0
+    },
+    {
+      "position": 17,
+      "code": "HUL",
+      "name": "Nico H\u00fclkenberg",
+      "surname": "H\u00fclkenberg",
+      "points": 0.0,
+      "team": "Audi",
+      "wins": 0
+    },
+    {
+      "position": 18,
+      "code": "ALB",
+      "name": "Alexander Albon",
+      "surname": "Albon",
+      "points": 0.0,
+      "team": "Williams",
+      "wins": 0
+    },
+    {
+      "position": 19,
+      "code": "BOT",
+      "name": "Valtteri Bottas",
+      "surname": "Bottas",
+      "points": 0.0,
+      "team": "Cadillac F1 Team",
+      "wins": 0
+    },
+    {
+      "position": 20,
+      "code": "PER",
+      "name": "Sergio P\u00e9rez",
+      "surname": "P\u00e9rez",
+      "points": 0.0,
+      "team": "Cadillac F1 Team",
+      "wins": 0
+    },
+    {
+      "position": 21,
+      "code": "ALO",
+      "name": "Fernando Alonso",
+      "surname": "Alonso",
+      "points": 0.0,
+      "team": "Aston Martin",
+      "wins": 0
+    },
+    {
+      "position": 22,
+      "code": "STR",
+      "name": "Lance Stroll",
+      "surname": "Stroll",
+      "points": 0.0,
+      "team": "Aston Martin",
+      "wins": 0
+    }
+  ],
+  "constructors_standings": [
+    {
+      "position": 1,
+      "team": "Mercedes",
+      "points": 98.0,
+      "wins": 2
+    },
+    {
+      "position": 2,
+      "team": "Ferrari",
+      "points": 67.0,
+      "wins": 0
+    },
+    {
+      "position": 3,
+      "team": "McLaren",
+      "points": 18.0,
+      "wins": 0
+    },
+    {
+      "position": 4,
+      "team": "Haas F1 Team",
+      "points": 17.0,
+      "wins": 0
+    },
+    {
+      "position": 5,
+      "team": "Red Bull",
+      "points": 12.0,
+      "wins": 0
+    },
+    {
+      "position": 6,
+      "team": "RB F1 Team",
+      "points": 12.0,
+      "wins": 0
+    },
+    {
+      "position": 7,
+      "team": "Alpine F1 Team",
+      "points": 10.0,
+      "wins": 0
+    },
+    {
+      "position": 8,
+      "team": "Audi",
+      "points": 2.0,
+      "wins": 0
+    },
+    {
+      "position": 9,
+      "team": "Williams",
+      "points": 2.0,
+      "wins": 0
+    },
+    {
+      "position": 10,
+      "team": "Cadillac F1 Team",
+      "points": 0.0,
+      "wins": 0
+    },
+    {
+      "position": 11,
+      "team": "Aston Martin",
+      "points": 0.0,
+      "wins": 0
+    }
+  ],
+  "driver_signals": {
+    "Russell": {
+      "name": "George Russell",
+      "team": "Mercedes",
+      "championship_position": 1,
+      "points": 51.0,
+      "wins": 1,
+      "form": "elite",
+      "consistency": "high",
+      "base_score": 95
+    },
+    "Antonelli": {
+      "name": "Andrea Kimi Antonelli",
+      "team": "Mercedes",
+      "championship_position": 2,
+      "points": 47.0,
+      "wins": 1,
+      "form": "elite",
+      "consistency": "high",
+      "base_score": 95
+    },
+    "Leclerc": {
+      "name": "Charles Leclerc",
+      "team": "Ferrari",
+      "championship_position": 3,
+      "points": 34.0,
+      "wins": 0,
+      "form": "strong",
+      "consistency": "high",
+      "base_score": 85
+    },
+    "Hamilton": {
+      "name": "Lewis Hamilton",
+      "team": "Ferrari",
+      "championship_position": 4,
+      "points": 33.0,
+      "wins": 0,
+      "form": "strong",
+      "consistency": "high",
+      "base_score": 85
+    },
+    "Bearman": {
+      "name": "Oliver Bearman",
+      "team": "Haas F1 Team",
+      "championship_position": 5,
+      "points": 17.0,
+      "wins": 0,
+      "form": "strong",
+      "consistency": "high",
+      "base_score": 85
+    },
+    "Norris": {
+      "name": "Lando Norris",
+      "team": "McLaren",
+      "championship_position": 6,
+      "points": 15.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Gasly": {
+      "name": "Pierre Gasly",
+      "team": "Alpine F1 Team",
+      "championship_position": 7,
+      "points": 9.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Verstappen": {
+      "name": "Max Verstappen",
+      "team": "Red Bull",
+      "championship_position": 8,
+      "points": 8.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Lawson": {
+      "name": "Liam Lawson",
+      "team": "RB F1 Team",
+      "championship_position": 9,
+      "points": 8.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Lindblad": {
+      "name": "Arvid Lindblad",
+      "team": "RB F1 Team",
+      "championship_position": 10,
+      "points": 4.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Hadjar": {
+      "name": "Isack Hadjar",
+      "team": "Red Bull",
+      "championship_position": 11,
+      "points": 4.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Piastri": {
+      "name": "Oscar Piastri",
+      "team": "McLaren",
+      "championship_position": 12,
+      "points": 3.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Sainz": {
+      "name": "Carlos Sainz",
+      "team": "Williams",
+      "championship_position": 13,
+      "points": 2.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Bortoleto": {
+      "name": "Gabriel Bortoleto",
+      "team": "Audi",
+      "championship_position": 14,
+      "points": 2.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Colapinto": {
+      "name": "Franco Colapinto",
+      "team": "Alpine F1 Team",
+      "championship_position": 15,
+      "points": 1.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Ocon": {
+      "name": "Esteban Ocon",
+      "team": "Haas F1 Team",
+      "championship_position": 16,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "H\u00fclkenberg": {
+      "name": "Nico H\u00fclkenberg",
+      "team": "Audi",
+      "championship_position": 17,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Albon": {
+      "name": "Alexander Albon",
+      "team": "Williams",
+      "championship_position": 18,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Bottas": {
+      "name": "Valtteri Bottas",
+      "team": "Cadillac F1 Team",
+      "championship_position": 19,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "P\u00e9rez": {
+      "name": "Sergio P\u00e9rez",
+      "team": "Cadillac F1 Team",
+      "championship_position": 20,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Alonso": {
+      "name": "Fernando Alonso",
+      "team": "Aston Martin",
+      "championship_position": 21,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Stroll": {
+      "name": "Lance Stroll",
+      "team": "Aston Martin",
+      "championship_position": 22,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    }
+  },
+  "team_signals": {
+    "Mercedes": {
+      "position": 1,
+      "points": 98.0,
+      "wins": 2,
+      "tier": "dominant"
+    },
+    "Ferrari": {
+      "position": 2,
+      "points": 67.0,
+      "wins": 0,
+      "tier": "front_runner"
+    },
+    "McLaren": {
+      "position": 3,
+      "points": 18.0,
+      "wins": 0,
+      "tier": "front_runner"
+    },
+    "Haas F1 Team": {
+      "position": 4,
+      "points": 17.0,
+      "wins": 0,
+      "tier": "midfield"
+    },
+    "Red Bull": {
+      "position": 5,
+      "points": 12.0,
+      "wins": 0,
+      "tier": "midfield"
+    },
+    "RB F1 Team": {
+      "position": 6,
+      "points": 12.0,
+      "wins": 0,
+      "tier": "midfield"
+    },
+    "Alpine F1 Team": {
+      "position": 7,
+      "points": 10.0,
+      "wins": 0,
+      "tier": "backmarker"
+    },
+    "Audi": {
+      "position": 8,
+      "points": 2.0,
+      "wins": 0,
+      "tier": "backmarker"
+    },
+    "Williams": {
+      "position": 9,
+      "points": 2.0,
+      "wins": 0,
+      "tier": "backmarker"
+    },
+    "Cadillac F1 Team": {
+      "position": 10,
+      "points": 0.0,
+      "wins": 0,
+      "tier": "backmarker"
+    },
+    "Aston Martin": {
+      "position": 11,
+      "points": 0.0,
+      "wins": 0,
+      "tier": "backmarker"
+    }
+  }
+}

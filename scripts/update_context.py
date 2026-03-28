@@ -35,7 +35,6 @@ def fetch_driver_standings():
             "position": int(d["position"]),
             "code": d["Driver"]["code"],
             "name": f"{d['Driver']['givenName']} {d['Driver']['familyName']}",
-            "surname": d["Driver"]["familyName"],
             "points": float(d["points"]),
             "team": d["Constructors"][0]["name"],
             "wins": int(d["wins"])
@@ -74,35 +73,28 @@ def generate_driver_signals(drivers):
     for d in drivers:
         pos = d["position"]
 
-        # FORM CLASSIFICATION
-        if pos <= 2:
-            form = "elite"
-            score = 95
-        elif pos <= 5:
-            form = "strong"
-            score = 85
-        elif pos <= 10:
-            form = "competitive"
-            score = 75
-        else:
-            form = "weak"
-            score = 60
+        # NUMERIC FORM SCORE (no vague labels)
+        form_score = max(0, 100 - pos * 3)
 
-        # CONSISTENCY (based on wins + position)
-        consistency = "high" if d["wins"] > 0 or pos <= 5 else "medium"
+        # CONSISTENCY SCORE (simple proxy)
+        consistency_score = min(100, d["wins"] * 10 + (25 if pos <= 5 else 10))
 
-        signals[d["surname"]] = {
+        signals[d["code"]] = {
             "name": d["name"],
             "team": d["team"],
             "championship_position": pos,
             "points": d["points"],
             "wins": d["wins"],
-            "form": form,
-            "consistency": consistency,
-            "base_score": score
+
+            # Replace vague labels with numbers
+            "form_score": round(form_score, 2),
+            "consistency_score": round(consistency_score, 2),
+
+            # Add uncertainty
+            "confidence": "medium" if pos <= 10 else "low"
         }
 
-    return signals
+    return signals  
 
 
 # ----------------------------
@@ -115,58 +107,40 @@ def generate_team_signals(teams):
     for t in teams:
         pos = t["position"]
 
-        if pos == 1:
-            tier = "dominant"
-        elif pos <= 3:
-            tier = "front_runner"
-        elif pos <= 6:
-            tier = "midfield"
-        else:
-            tier = "backmarker"
+        # Numeric strength instead of tiers
+        strength_score = max(0, 100 - pos * 5)
 
         signals[t["team"]] = {
             "position": pos,
             "points": t["points"],
             "wins": t["wins"],
-            "tier": tier
+            "strength_score": round(strength_score, 2),
+
+            # Add uncertainty
+            "confidence": "high" if pos <= 3 else "medium"
         }
 
     return signals
-
-
 # ----------------------------
-# TRACK BIAS (30%)
+# Track CONTEXT
 # ----------------------------
 
-def get_track_bias():
+def get_track_context():
     return {
         "Japanese Grand Prix": {
             "circuit_type": "high-speed technical",
             "overtaking_difficulty": "hard",
             "importance_of_qualifying": "high",
 
-            "driver_bias": [
-                {
-                    "driver": "Verstappen",
-                    "boost": 12,
-                    "reason": "Multiple Suzuka wins, strong high-speed performance"
-                },
-                {
-                    "driver": "Hamilton",
-                    "boost": 8,
-                    "reason": "Historically strong at Suzuka"
-                }
-            ],
+            # NO driver bias
+            # NO team bias
 
-            "team_bias": [
-                {
-                    "team": "Red Bull Racing",
-                    "boost": 10
-                }
+            "notes": [
+                "Track position is important",
+                "High-speed corners favor aerodynamic efficiency"
             ]
         }
     }
-
 
 # ----------------------------
 # BUILD CONTEXT
@@ -185,7 +159,7 @@ def build_context():
 
         "weights": {
             "current_form": 0.7,
-            "historical_track": 0.3
+            "track_characteristics": 0.3
         },
 
         "drivers_standings": drivers,
@@ -194,7 +168,18 @@ def build_context():
         "driver_signals": generate_driver_signals(drivers),
         "team_signals": generate_team_signals(teams),
 
-        "track_bias": get_track_bias()
+        "track_context": get_track_context(),
+
+        # anti-hallucination layer
+        "model_constraints": {
+            "description": "This system predicts expected race outcomes based on statistical trends.",
+            "limitations": [
+                "No real-time race simulation",
+                "No pit strategy modeling",
+                "No weather effects included"
+            ],
+            "instruction": "Use cautious, probabilistic reasoning. Do not assume certainty."
+        }
     }
 
     return context
@@ -220,7 +205,7 @@ def save_context():
     existing["constructors_standings"] = new_data["constructors_standings"]
     existing["driver_signals"]         = new_data["driver_signals"]
     existing["team_signals"]           = new_data["team_signals"]
-    existing["track_bias"]             = new_data["track_bias"]
+    existing["track_context"]          = new_data["track_context"]
 
     # Update season results standings from live data
     if "season_2026_results" in existing:
@@ -244,5 +229,5 @@ if __name__ == "__main__":
     try:
         save_context()
     except Exception as e:
-        print("❌ Error updating context:")
+        print("Error updating context:")
         print(e)

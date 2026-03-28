@@ -1,5 +1,8 @@
 import pandas as pd
+import os
 from sqlalchemy import create_engine
+from dotenv import load_dotenv
+load_dotenv()
 
 # We use local SQL Server to build this — it has all our race data
 source_engine = create_engine(
@@ -7,7 +10,7 @@ source_engine = create_engine(
 
 
 supabase_engine = create_engine(
-    "postgresql://postgres.wvwcylvveasvgakzhppy:F2CP2Wb$Kcfv2Ds@aws-1-eu-central-1.pooler.supabase.com:5432/postgres",
+    os.environ.get("DATABASE_URL"),
     connect_args={"sslmode": "require"}
 )
 

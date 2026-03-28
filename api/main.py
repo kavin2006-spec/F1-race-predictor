@@ -84,8 +84,20 @@ def load_model():
 
 
 def load_context():
-    with open(os.path.join(BASE_DIR, "data", "f1_context.json"), "r") as f:
-        return json.load(f)
+    static_path  = os.path.join(BASE_DIR, "data", "f1_context_static.json")
+    dynamic_path = os.path.join(BASE_DIR, "data", "f1_context_dynamic.json")
+
+    with open(static_path, "r") as f:
+        static = json.load(f)
+
+    # Merge dynamic on top if it exists
+    if os.path.exists(dynamic_path):
+        with open(dynamic_path, "r") as f:
+            dynamic = json.load(f)
+        # Dynamic data overrides static for shared keys
+        static.update(dynamic)
+
+    return static
 
 
 def build_driver_row(driver, team, track_name, track_id, grid_pos, h=None):
@@ -356,8 +368,9 @@ def get_next_race():
         raise
     except Exception as e:
         import traceback
-        print(traceback.format_exc())
-        raise HTTPException(status_code=500, detail=str(e))
+        tb = traceback.format_exc()
+        print(tb)
+        raise HTTPException(status_code=500, detail=tb)
 
 
 @app.post("/save-prediction/{year}/{round_number}")

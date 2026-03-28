@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API = "http://localhost:8000/";
+const API = "http://localhost:8000";
 
 const TEAM_COLORS = {
   "Mercedes":          "#00D2BE",
