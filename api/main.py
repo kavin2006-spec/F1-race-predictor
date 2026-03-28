@@ -6,6 +6,8 @@ import os
 import json
 from sqlalchemy import create_engine
 from datetime import datetime, timezone
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
 
@@ -18,10 +20,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DATABASE_URL = os.environ.get(
-    "DATABASE_URL",
-    "postgresql://postgres.wvwcylvveasvgakzhppy:F2CP2Wb$Kcfv2Ds@aws-1-eu-central-1.pooler.supabase.com:5432/postgres",
-)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable not set")
 
 engine = create_engine(
     DATABASE_URL,
