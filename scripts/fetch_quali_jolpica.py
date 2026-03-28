@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
+
 
 def fetch_qualifying_from_jolpica(year, round_number):
     url = f"https://api.jolpi.ca/ergast/f1/{year}/{round_number}/qualifying.json"
@@ -74,16 +75,16 @@ if __name__ == "__main__":
     df = fetch_qualifying_from_jolpica(YEAR, ROUND)
 
     if df is not None:
-        existing = pd.read_sql(
-            f"SELECT COUNT(*) as n FROM qualifying WHERE year={YEAR} AND round={ROUND}",
-            engine
-        )
-        if existing["n"].iloc[0] > 0:
-            print(f"Already exists — delete first if you want to overwrite:")
-            print(f"DELETE FROM qualifying WHERE year={YEAR} AND round={ROUND}")
-        else:
-            df.to_sql("qualifying", engine, if_exists="append", index=False)
-            print(f"Saved {len(df)} rows")
-            print(df.to_string())
+        # Auto-delete existing data for this round then reinsert
+        # This means you can safely rerun the script after official times publish
+        with engine.connect() as conn:
+            conn.execute(
+                text(f"DELETE FROM qualifying WHERE year={YEAR} AND round={ROUND}")
+            )
+            conn.commit()
+        
+        df.to_sql("qualifying", engine, if_exists="append", index=False)
+        print(f"Saved {len(df)} rows for {YEAR} round {ROUND}")
+        print(df.to_string())
     else:
-        print("No data yet — qualifying may not have happened")
+        print("No data yet — try again later")
