@@ -508,8 +508,10 @@ async def chat(body: dict):
     reg_note = context.get("regulation_notes", {}).get(str(year), "")
 
     # 2026 season results
-    season_results = context.get("season_2026_results", {})
-    races_so_far   = season_results.get("races", [])
+    # Use auto-pulled results if available, fall back to manual
+    season_results = context.get("season_2026_results_auto") or \
+                     context.get("season_2026_results", {})
+    races_so_far = season_results.get("races", [])
     standings      = season_results.get("season_standings_after_round_2", {})
 
     results_str = ""

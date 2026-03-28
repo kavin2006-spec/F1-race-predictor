@@ -2,13 +2,16 @@ import requests
 import json
 import os
 from datetime import datetime
+import pandas as pd
+from sqlalchemy import create_engine
+from datetime import datetime
 
 # ----------------------------
 # PATH SETUP (SAFE)
 # ----------------------------
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(BASE_DIR, "data", "f1_context.json")
+DATA_PATH = os.path.join(BASE_DIR, "data", "f1_context_dynamic.json")
 
 
 # ----------------------------
@@ -143,6 +146,68 @@ def get_track_context():
     }
 
 # ----------------------------
+# Track CONTEXT
+# ----------------------------
+
+def fetch_race_results_from_db(engine):
+    """
+    Pull actual race results from the database and format them
+    for the dynamic context — no manual entry needed.
+    """
+    results_query = """
+        SELECT r.year, r.round, r.track, r.driver, r.final_pos, r.grid_pos, r.status,
+               f.team
+        FROM race_results r
+        LEFT JOIN features f ON r.driver = f.driver 
+            AND r.year = f.year AND r.round = f.round
+        WHERE r.year = 2026
+        AND r.status IN ('Finished', 'Lapped', '+1 Lap', '+2 Laps', '')
+        ORDER BY r.round, r.final_pos
+    """
+    
+    try:
+        df = pd.read_sql(results_query, engine)
+    except Exception as e:
+        print(f"Could not fetch race results: {e}")
+        return {}
+
+    # Driver name lookup
+    driver_names = {
+        "VER": "Max Verstappen",     "NOR": "Lando Norris",
+        "LEC": "Charles Leclerc",    "HAM": "Lewis Hamilton",
+        "RUS": "George Russell",     "ANT": "Kimi Antonelli",
+        "PIA": "Oscar Piastri",      "SAI": "Carlos Sainz",
+        "ALB": "Alexander Albon",    "GAS": "Pierre Gasly",
+        "OCO": "Esteban Ocon",       "BEA": "Oliver Bearman",
+        "STR": "Lance Stroll",       "ALO": "Fernando Alonso",
+        "LAW": "Liam Lawson",        "HAD": "Isack Hadjar",
+        "LIN": "Arvid Lindblad",     "COL": "Franco Colapinto",
+        "HUL": "Nico Hülkenberg",    "BOR": "Gabriel Bortoleto",
+        "PER": "Sergio Pérez",       "BOT": "Valtteri Bottas",
+    }
+
+    races = {}
+    for (round_num, track), group in df.groupby(["round", "track"]):
+        top5 = group.sort_values("final_pos").head(5)
+        races[round_num] = {
+            "round":  int(round_num),
+            "name":   track,
+            "result": [
+                {
+                    "pos":    int(row["final_pos"]),
+                    "driver": row["driver"],
+                    "name":   driver_names.get(row["driver"], row["driver"]),
+                    "grid":   int(row["grid_pos"]),
+                }
+                for _, row in top5.iterrows()
+            ]
+        }
+
+    return {
+        "races": list(races.values()),
+        "last_updated": datetime.utcnow().isoformat()
+    }
+# ----------------------------
 # BUILD CONTEXT
 # ----------------------------
 
@@ -189,37 +254,30 @@ def build_context():
 # SAVE FILE
 # ----------------------------
 
+DYNAMIC_PATH = os.path.join(BASE_DIR, "data", "f1_context_dynamic.json")
+
 def save_context():
-    # Load existing context to preserve drivers, tracks, regulations etc.
-    existing = {}
-    if os.path.exists(DATA_PATH):
-        with open(DATA_PATH, "r", encoding="utf-8") as f:
-            existing = json.load(f)
+    from sqlalchemy import create_engine as ce
+    from dotenv import load_dotenv
+    load_dotenv()
 
-    # Build fresh standings data
-    new_data = build_context()
+    # Connect to local SQL Server for race results
+    local_engine = ce(
+        "mssql+pyodbc://@MSI\\SQLEXPRESS/F1Database"
+        "?driver=ODBC+Driver+17+for+SQL+Server"
+        "&trusted_connection=yes"
+        "&TrustServerCertificate=yes"
+    )
 
-    # Merge — update only the live data sections, preserve manual sections
-    existing["metadata"]               = new_data["metadata"]
-    existing["drivers_standings"]      = new_data["drivers_standings"]
-    existing["constructors_standings"] = new_data["constructors_standings"]
-    existing["driver_signals"]         = new_data["driver_signals"]
-    existing["team_signals"]           = new_data["team_signals"]
-    existing["track_context"]          = new_data["track_context"]
+    context = build_context()
 
-    # Update season results standings from live data
-    if "season_2026_results" in existing:
-        existing["season_2026_results"]["season_standings_live"] = {
-            "drivers": new_data["drivers_standings"][:7],
-            "constructors": new_data["constructors_standings"][:5]
-        }
+    # Add auto-pulled race results
+    context["season_2026_results_auto"] = fetch_race_results_from_db(local_engine)
 
-    with open(DATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(existing, f, indent=2)
+    with open(DYNAMIC_PATH, "w", encoding="utf-8") as f:
+        json.dump(context, f, indent=2)
 
-    print("Context updated — standings refreshed, manual sections preserved")
-    print(f"Drivers in standings: {len(new_data['drivers_standings'])}")
-    print(f"Teams in standings: {len(new_data['constructors_standings'])}")
+    print("Dynamic context updated including 2026 race results")
 
 # ----------------------------
 # RUN SCRIPT
