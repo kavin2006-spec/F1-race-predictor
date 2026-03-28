@@ -76,13 +76,7 @@ await axios.post(`${API}/chat`, {
 });
 ```
 
-Backend prepends system prompt to full history → **complete context always**.
-
-## Updating Workflow
-
-Before quali → update_context.py (live standings)
-After quali → predictions auto-update
-After race → manually add to f1_context_static.json
+So reloading the front page removes any memory. Backend prepends system prompt to full history → **complete context always**.
 
 
 ## Limitations
