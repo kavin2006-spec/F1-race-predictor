@@ -1,0 +1,754 @@
+{
+
+  "regulation_context": {
+    "season": 2026,
+    "regulation_change_level": 5,
+    "predictability_level": 2,
+    "note": "Major regulation overhaul with new car concepts and power units causing high variability in team performance"
+  },
+
+  "data_weighting": {
+    "current_season_weight": 0.8,
+    "historical_weight": 0.2,
+    "bias_weight_cap": 0.15
+  },
+
+  "reasoning_rules": {
+    "race_prediction_steps": [
+      "1. Start with driver_signals.base_score",
+      "2. Strongly prioritize current season standings and points",
+      "3. Apply team_signals tier and performance",
+      "4. Apply track characteristics and track_type biases",
+      "5. Apply qualifying importance if overtaking_difficulty >= 4",
+      "6. Apply driver-specific biases (racecraft, qualifying, consistency)",
+      "7. Apply track_bias overrides",
+      "8. Apply controlled randomness based on track and regulation unpredictability"
+    ],
+
+    "scoring_weights": {
+      "current_form": 0.35,
+      "driver_base": 0.25,
+      "team_strength": 0.2,
+      "track_fit": 0.1,
+      "bias_adjustments": 0.05,
+      "randomness": 0.05
+    },
+
+    "rules": [
+      "Current season performance overrides historical reputation",
+      "Do not overvalue past champions or historically strong drivers",
+      "New regulation era increases variance in results",
+      "Top teams may not always dominate due to regulation reset",
+      "Rookies and midfield drivers have increased upset probability"
+    ]
+  },
+
+  "race_randomness": {
+    "base_randomness": 0.3,
+    "regulation_uncertainty_bonus": 0.2,
+
+    "street_tracks": {
+      "safety_car_probability": 0.6,
+      "dnf_probability": 0.3,
+      "randomness_multiplier": 1.3
+    },
+
+    "permanent_tracks": {
+      "safety_car_probability": 0.3,
+      "dnf_probability": 0.15,
+      "randomness_multiplier": 1.0
+    }
+  },
+
+"drivers": {
+  "NOR": {
+    "name": "Lando Norris",
+    "team": "McLaren",
+    "status": ["world_champion_2025"],
+    "experience_level": "high"
+  },
+  "PIA": {
+    "name": "Oscar Piastri",
+    "team": "McLaren",
+    "experience_level": "medium",
+    "performance_level": "competitive"
+  },
+  "RUS": {
+    "name": "George Russell",
+    "team": "Mercedes",
+    "team_role": "leader",
+    "experience_level": "high"
+  },
+  "ANT": {
+    "name": "Kimi Antonelli",
+    "team": "Mercedes",
+    "experience_level": "low",
+    "development_status": "high_potential"
+  },
+  "LEC": {
+    "name": "Charles Leclerc",
+    "team": "Ferrari",
+    "team_role": "leader",
+    "experience_level": "high"
+  },
+  "HAM": {
+    "name": "Lewis Hamilton",
+    "team": "Ferrari",
+    "experience_level": "very_high",
+    "racecraft_bias": 5
+  },
+  "VER": {
+    "name": "Max Verstappen",
+    "team": "Red Bull Racing",
+    "experience_level": "high",
+    "race_pace_bias": 5
+  },
+  "HAD": {
+    "name": "Isack Hadjar",
+    "team": "Red Bull Racing",
+    "experience_level": "low",
+    "promotion_status": "new_to_top_team"
+  },
+  "LAW": {
+    "name": "Liam Lawson",
+    "team": "Racing Bulls",
+    "experience_level": "medium"
+  },
+  "LIN": {
+    "name": "Arvid Lindblad",
+    "team": "Racing Bulls",
+    "experience_level": "rookie"
+  },
+  "ALB": {
+    "name": "Alexander Albon",
+    "team": "Williams",
+    "experience_level": "high",
+    "consistency_bias": 3
+  },
+  "SAI": {
+    "name": "Carlos Sainz",
+    "team": "Williams",
+    "experience_level": "high",
+    "qualifying_bias": 4
+  },
+  "ALO": {
+    "name": "Fernando Alonso",
+    "team": "Aston Martin",
+    "experience_level": "very_high",
+    "racecraft_bias": 6
+  },
+  "STR": {
+    "name": "Lance Stroll",
+    "team": "Aston Martin",
+    "experience_level": "medium"
+  },
+  "GAS": {
+    "name": "Pierre Gasly",
+    "team": "Alpine",
+    "experience_level": "high",
+    "consistency_bias": 3
+  },
+  "COL": {
+    "name": "Franco Colapinto",
+    "team": "Alpine",
+    "experience_level": "low",
+    "development_status": "developing"
+  },
+  "OCO": {
+    "name": "Esteban Ocon",
+    "team": "Haas",
+    "experience_level": "high",
+    "racecraft_bias": 3
+  },
+  "BEA": {
+    "name": "Oliver Bearman",
+    "team": "Haas",
+    "experience_level": "low",
+    "development_status": "high_potential"
+  },
+  "HUL": {
+    "name": "Nico Hülkenberg",
+    "team": "Audi",
+    "experience_level": "very_high",
+    "consistency_bias": 4
+  },
+  "BOR": {
+    "name": "Gabriel Bortoleto",
+    "team": "Audi",
+    "experience_level": "rookie",
+    "development_status": "high_potential"
+  },
+  "PER": {
+    "name": "Sergio Pérez",
+    "team": "Cadillac",
+    "experience_level": "high",
+    "racecraft_bias": 4
+  },
+  "BOT": {
+    "name": "Valtteri Bottas",
+    "team": "Cadillac",
+    "experience_level": "very_high",
+    "consistency_bias": 4
+  }
+},
+"teams": {
+  "McLaren": {
+    "engine": "Mercedes",
+    "team_tier_hint": "front_runner",
+    "performance_trend": "strong",
+    "development_strength": 4
+  },
+  "Mercedes": {
+    "engine": "Mercedes works",
+    "team_tier_hint": "dominant",
+    "performance_trend": "very_strong",
+    "development_strength": 5
+  },
+  "Ferrari": {
+    "engine": "Ferrari works",
+    "team_tier_hint": "front_runner",
+    "performance_trend": "improving",
+    "development_strength": 4
+  },
+  "Red Bull Racing": {
+    "engine": "Honda RBPT",
+    "team_tier_hint": "front_runner",
+    "race_pace_bias": 5,
+    "development_strength": 4
+  },
+  "Racing Bulls": {
+    "engine": "Honda RBPT",
+    "team_tier_hint": "midfield",
+    "development_focus": true,
+    "development_strength": 3
+  },
+  "Williams": {
+    "engine": "Mercedes",
+    "team_tier_hint": "midfield",
+    "consistency_bias": 3,
+    "development_strength": 3
+  },
+  "Aston Martin": {
+    "engine": "Mercedes",
+    "team_tier_hint": "midfield",
+    "performance_trend": "uncertain_high_potential",
+    "development_strength": 4
+  },
+  "Alpine": {
+    "engine": "Mercedes customer",
+    "team_tier_hint": "midfield",
+    "performance_trend": "stable",
+    "development_strength": 3
+  },
+  "Haas": {
+    "engine": "Ferrari customer",
+    "team_tier_hint": "lower_midfield",
+    "consistency_risk": 3,
+    "development_strength": 2
+  },
+  "Audi": {
+    "engine": "Audi works",
+    "team_tier_hint": "backmarker",
+    "new_team": true,
+    "development_strength": 3
+  },
+  "Cadillac": {
+    "engine": "Ferrari customer",
+    "team_tier_hint": "backmarker",
+    "new_team": true,
+    "development_strength": 2
+  }
+},
+"tracks": {
+  "Australian Grand Prix": {
+    "circuit": "Albert Park",
+    "track_type": "street_style",
+    "overtaking_difficulty": 3,
+    "qualifying_importance": 3,
+    "randomness_level": 4
+  },
+  "Chinese Grand Prix": {
+    "circuit": "Shanghai",
+    "track_type": "permanent",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 2,
+    "tire_management_importance": 4
+  },
+  "Japanese Grand Prix": {
+    "circuit": "Suzuka",
+    "track_type": "high_speed_technical",
+    "overtaking_difficulty": 4,
+    "qualifying_importance": 4,
+    "high_speed_bias": 5
+  },
+  "Bahrain Grand Prix": {
+    "circuit": "Sakhir",
+    "track_type": "power_traction",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 2,
+    "tire_management_importance": 4
+  },
+  "Saudi Arabian Grand Prix": {
+    "circuit": "Jeddah",
+    "track_type": "high_speed_street",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 3,
+    "high_speed_bias": 5
+  },
+  "Miami Grand Prix": {
+    "circuit": "Miami",
+    "track_type": "street_style",
+    "overtaking_difficulty": 3,
+    "qualifying_importance": 3,
+    "randomness_level": 3
+  },
+  "Canadian Grand Prix": {
+    "circuit": "Montreal",
+    "track_type": "stop_go",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 2,
+    "braking_stability_bias": 4
+  },
+  "Monaco Grand Prix": {
+    "circuit": "Monaco",
+    "track_type": "street",
+    "overtaking_difficulty": 5,
+    "qualifying_importance": 5,
+    "randomness_level": 3
+  },
+  "Spanish Grand Prix (Barcelona)": {
+    "circuit": "Barcelona-Catalunya",
+    "track_type": "balanced",
+    "overtaking_difficulty": 3,
+    "qualifying_importance": 3,
+    "aero_efficiency_bias": 4
+  },
+  "Austrian Grand Prix": {
+    "circuit": "Red Bull Ring",
+    "track_type": "power_short",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 2,
+    "straight_line_speed_bias": 4
+  },
+  "British Grand Prix": {
+    "circuit": "Silverstone",
+    "track_type": "high_speed",
+    "overtaking_difficulty": 3,
+    "qualifying_importance": 3,
+    "high_speed_bias": 4
+  },
+  "Belgian Grand Prix": {
+    "circuit": "Spa",
+    "track_type": "power_mixed",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 2,
+    "weather_variability": 5
+  },
+  "Hungarian Grand Prix": {
+    "circuit": "Hungaroring",
+    "track_type": "technical",
+    "overtaking_difficulty": 4,
+    "qualifying_importance": 4,
+    "downforce_bias": 5
+  },
+  "Dutch Grand Prix": {
+    "circuit": "Zandvoort",
+    "track_type": "banked_technical",
+    "overtaking_difficulty": 4,
+    "qualifying_importance": 4,
+    "downforce_bias": 4
+  },
+  "Italian Grand Prix": {
+    "circuit": "Monza",
+    "track_type": "power",
+    "overtaking_difficulty": 1,
+    "qualifying_importance": 2,
+    "straight_line_speed_bias": 5
+  },
+  "Spanish Grand Prix (Madrid)": {
+    "circuit": "Madrid",
+    "track_type": "street_hybrid",
+    "overtaking_difficulty": 3,
+    "qualifying_importance": 3,
+    "unknown_factor": 5
+  },
+  "Azerbaijan Grand Prix": {
+    "circuit": "Baku",
+    "track_type": "street_power",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 3,
+    "randomness_level": 5
+  },
+  "Singapore Grand Prix": {
+    "circuit": "Marina Bay",
+    "track_type": "street",
+    "overtaking_difficulty": 5,
+    "qualifying_importance": 5,
+    "randomness_level": 5,
+    "safety_car_probability": 5
+  },
+  "United States Grand Prix": {
+    "circuit": "Austin",
+    "track_type": "mixed",
+    "overtaking_difficulty": 3,
+    "qualifying_importance": 3,
+    "balanced_bias": 4
+  },
+  "Mexican Grand Prix": {
+    "circuit": "Mexico City",
+    "track_type": "high_altitude",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 2,
+    "engine_efficiency_bias": 5
+  },
+  "Brazilian Grand Prix": {
+    "circuit": "Interlagos",
+    "track_type": "short_mixed",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 2,
+    "randomness_level": 4
+  },
+  "Las Vegas Grand Prix": {
+    "circuit": "Las Vegas",
+    "track_type": "street_power",
+    "overtaking_difficulty": 2,
+    "qualifying_importance": 3,
+    "straight_line_speed_bias": 5
+  },
+  "Qatar Grand Prix": {
+    "circuit": "Lusail",
+    "track_type": "high_speed",
+    "overtaking_difficulty": 3,
+    "qualifying_importance": 3,
+    "tire_management_importance": 5
+  },
+  "Abu Dhabi Grand Prix": {
+    "circuit": "Yas Marina",
+    "track_type": "technical_power",
+    "overtaking_difficulty": 3,
+    "qualifying_importance": 3,
+    "strategy_importance": 4
+  }
+},
+  "track_bias": {
+    "Japanese Grand Prix": {
+      "circuit_type": "high-speed technical",
+      "overtaking_difficulty": "hard",
+      "importance_of_qualifying": "high",
+      "driver_bias": [
+        {
+          "driver": "Verstappen",
+          "boost": 12,
+          "reason": "Multiple Suzuka wins, strong high-speed performance"
+        },
+        {
+          "driver": "Hamilton",
+          "boost": 8,
+          "reason": "Historically strong at Suzuka"
+        }
+      ],
+      "team_bias": [
+        {
+          "team": "Red Bull Racing",
+          "boost": 10
+        }
+      ]
+    }
+  },
+
+  "driver_standings_2026": {
+    "Russell": {
+      "name": "George Russell",
+      "team": "Mercedes",
+      "championship_position": 1,
+      "points": 51.0,
+      "wins": 1,
+      "form": "elite",
+      "consistency": "high",
+      "base_score": 95
+    },
+    "Antonelli": {
+      "name": "Andrea Kimi Antonelli",
+      "team": "Mercedes",
+      "championship_position": 2,
+      "points": 47.0,
+      "wins": 1,
+      "form": "elite",
+      "consistency": "high",
+      "base_score": 95
+    },
+    "Leclerc": {
+      "name": "Charles Leclerc",
+      "team": "Ferrari",
+      "championship_position": 3,
+      "points": 34.0,
+      "wins": 0,
+      "form": "strong",
+      "consistency": "high",
+      "base_score": 85
+    },
+    "Hamilton": {
+      "name": "Lewis Hamilton",
+      "team": "Ferrari",
+      "championship_position": 4,
+      "points": 33.0,
+      "wins": 0,
+      "form": "strong",
+      "consistency": "high",
+      "base_score": 85
+    },
+    "Bearman": {
+      "name": "Oliver Bearman",
+      "team": "Haas F1 Team",
+      "championship_position": 5,
+      "points": 17.0,
+      "wins": 0,
+      "form": "strong",
+      "consistency": "high",
+      "base_score": 85
+    },
+    "Norris": {
+      "name": "Lando Norris",
+      "team": "McLaren",
+      "championship_position": 6,
+      "points": 15.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Gasly": {
+      "name": "Pierre Gasly",
+      "team": "Alpine F1 Team",
+      "championship_position": 7,
+      "points": 9.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Verstappen": {
+      "name": "Max Verstappen",
+      "team": "Red Bull",
+      "championship_position": 8,
+      "points": 8.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Lawson": {
+      "name": "Liam Lawson",
+      "team": "RB F1 Team",
+      "championship_position": 9,
+      "points": 8.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Lindblad": {
+      "name": "Arvid Lindblad",
+      "team": "RB F1 Team",
+      "championship_position": 10,
+      "points": 4.0,
+      "wins": 0,
+      "form": "competitive",
+      "consistency": "medium",
+      "base_score": 75
+    },
+    "Hadjar": {
+      "name": "Isack Hadjar",
+      "team": "Red Bull",
+      "championship_position": 11,
+      "points": 4.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Piastri": {
+      "name": "Oscar Piastri",
+      "team": "McLaren",
+      "championship_position": 12,
+      "points": 3.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Sainz": {
+      "name": "Carlos Sainz",
+      "team": "Williams",
+      "championship_position": 13,
+      "points": 2.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Bortoleto": {
+      "name": "Gabriel Bortoleto",
+      "team": "Audi",
+      "championship_position": 14,
+      "points": 2.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Colapinto": {
+      "name": "Franco Colapinto",
+      "team": "Alpine F1 Team",
+      "championship_position": 15,
+      "points": 1.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Ocon": {
+      "name": "Esteban Ocon",
+      "team": "Haas F1 Team",
+      "championship_position": 16,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "H\u00fclkenberg": {
+      "name": "Nico H\u00fclkenberg",
+      "team": "Audi",
+      "championship_position": 17,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Albon": {
+      "name": "Alexander Albon",
+      "team": "Williams",
+      "championship_position": 18,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Bottas": {
+      "name": "Valtteri Bottas",
+      "team": "Cadillac F1 Team",
+      "championship_position": 19,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "P\u00e9rez": {
+      "name": "Sergio P\u00e9rez",
+      "team": "Cadillac F1 Team",
+      "championship_position": 20,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Alonso": {
+      "name": "Fernando Alonso",
+      "team": "Aston Martin",
+      "championship_position": 21,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    },
+    "Stroll": {
+      "name": "Lance Stroll",
+      "team": "Aston Martin",
+      "championship_position": 22,
+      "points": 0.0,
+      "wins": 0,
+      "form": "weak",
+      "consistency": "medium",
+      "base_score": 60
+    }
+  },
+  "team_standings_2026": {
+    "Mercedes": {
+      "position": 1,
+      "points": 98.0,
+      "wins": 2,
+      "tier": "dominant"
+    },
+    "Ferrari": {
+      "position": 2,
+      "points": 67.0,
+      "wins": 0,
+      "tier": "front_runner"
+    },
+    "McLaren": {
+      "position": 3,
+      "points": 18.0,
+      "wins": 0,
+      "tier": "front_runner"
+    },
+    "Haas F1 Team": {
+      "position": 4,
+      "points": 17.0,
+      "wins": 0,
+      "tier": "midfield"
+    },
+    "Red Bull": {
+      "position": 5,
+      "points": 12.0,
+      "wins": 0,
+      "tier": "midfield"
+    },
+    "RB F1 Team": {
+      "position": 6,
+      "points": 12.0,
+      "wins": 0,
+      "tier": "midfield"
+    },
+    "Alpine F1 Team": {
+      "position": 7,
+      "points": 10.0,
+      "wins": 0,
+      "tier": "backmarker"
+    },
+    "Audi": {
+      "position": 8,
+      "points": 2.0,
+      "wins": 0,
+      "tier": "backmarker"
+    },
+    "Williams": {
+      "position": 9,
+      "points": 2.0,
+      "wins": 0,
+      "tier": "backmarker"
+    },
+    "Cadillac F1 Team": {
+      "position": 10,
+      "points": 0.0,
+      "wins": 0,
+      "tier": "backmarker"
+    },
+    "Aston Martin": {
+      "position": 11,
+      "points": 0.0,
+      "wins": 0,
+      "tier": "backmarker"
+    }
+  },
+  "metadata": {
+    "last_updated": "2026-03-27T11:22:50.187832",
+    "season": 2026,
+    "data_source": "Ergast API"
+  }
+}

@@ -1,0 +1,34 @@
+# Virtual environment
+.venv/
+
+# Cache
+cache/
+
+# Trained model (too large, regenerated from training)
+models/
+
+# Local data files
+data/*.db
+data/*.csv
+
+# Environment files with secrets
+.env
+api/.env
+*.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code
+.vscode/
+
+# Node modules
+frontend/node_modules/
+
+# React build
+frontend/build/
+
+scripts/migrate_to_supabase.py
+scripts/manual_entry.py
