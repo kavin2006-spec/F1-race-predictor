@@ -9,7 +9,7 @@ A machine learning system that predicts Formula 1 race finishing positions befor
 
 ## What it does
 
-- Predicts finishing positions for every driver before a race starts
+- Predicts finishing positions for every driver before a race starts (As of right now, the model only predicts grand prixs, while it trains on sprint datas, it does NOT predict sprint races)
 - Uses qualifying pace, recent form, track DNA, championship pressure and more
 - Achieves **1.80 MAE** (positions off) with **81.9% of predictions within 3 positions**
 - Includes an AI analyst (phi3:mini via Ollama) that explains predictions in plain English
@@ -43,7 +43,6 @@ F1/
     ├── DATA.md
     ├── MODEL.md
     ├── CHATBOT.md
-    └── ROADMAP.md
 ```
 
 ## Stack
