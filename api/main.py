@@ -4,7 +4,7 @@ import pandas as pd
 import pickle
 import os
 import json
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 load_dotenv()
@@ -376,16 +376,14 @@ def get_next_race():
 @app.post("/save-prediction/{year}/{round_number}")
 def save_prediction(year: int, round_number: int):
     try:
-        # Try predict_race first (works for completed races)
-        # Fall back to next-race logic for upcoming races
-        try:
-            prediction = predict_race(year, round_number)
-        except HTTPException as e:
-            if e.status_code == 404:
-                # Race hasn't happened yet — use next-race prediction
-                prediction = get_next_race()
-            else:
-                raise
+        prediction = predict_race(year, round_number) if ... else get_next_race()
+
+        # Delete existing predictions for this round first
+        with engine.connect() as conn:
+            conn.execute(
+                text(f"DELETE FROM predictions_archive WHERE year={year} AND round={round_number}")
+            )
+            conn.commit()
 
         rows = []
         for p in prediction["predictions"]:

@@ -34,7 +34,7 @@ const DRIVER_NAMES = {
 const CALENDAR_2026 = [
   { round:1,  name:"Australian GP",  date:"2026-03-08T05:00:00Z", done:true  },
   { round:2,  name:"Chinese GP",     date:"2026-03-15T07:00:00Z", done:true  },
-  { round:3,  name:"Japanese GP",    date:"2026-03-29T05:00:00Z", done:false },
+  { round:3,  name:"Japanese GP",    date:"2026-03-29T05:00:00Z", done:true },
   { round:4,  name:"Miami GP",       date:"2026-05-03T19:00:00Z", done:false },
   { round:5,  name:"Canadian GP",    date:"2026-05-24T18:00:00Z", done:false },
   { round:6,  name:"Monaco GP",      date:"2026-06-07T13:00:00Z", done:false },
