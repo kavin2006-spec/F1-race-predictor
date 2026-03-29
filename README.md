@@ -9,7 +9,7 @@ A machine learning system that predicts Formula 1 race finishing positions befor
 
 ## What it does
 
-- Predicts finishing positions for every driver before a race starts
+- Predicts finishing positions for every driver before a race starts (As of right now, the model only predicts grand prixs, while it trains on sprint datas, it does NOT predict sprint races)
 - Uses qualifying pace, recent form, track DNA, championship pressure and more
 - Achieves **1.80 MAE** (positions off) with **81.9% of predictions within 3 positions**
 - Includes an AI analyst (phi3:mini via Ollama) that explains predictions in plain English
@@ -43,7 +43,6 @@ F1/
     ├── DATA.md
     ├── MODEL.md
     ├── CHATBOT.md
-    └── ROADMAP.md
 ```
 
 ## Stack
@@ -161,14 +160,13 @@ python scripts/migrate_to_supabase.py
 | Correct direction | 77.5% |
 | Training data | 2022–2026 (85+ races) |
 
-See [docs/MODEL.md](docs/MODEL.md) for full feature breakdown and methodology.
+See [MODEL.md](https://github.com/kavin2006-spec/F1-race-predictor/blob/main/MODEL.md) for full feature breakdown and methodology.
 
 ## Documentation
 
-- [Data pipeline](docs/DATA.md) — how race data is collected, stored and migrated
-- [Model](docs/MODEL.md) — feature engineering, target variable, training process
-- [AI analyst](docs/CHATBOT.md) — how the LLM context system works
-- [Roadmap](docs/ROADMAP.md) — planned improvements
+- [Data pipeline]((https://github.com/kavin2006-spec/F1-race-predictor/blob/main/DATA.md))  — how race data is collected, stored and migrated
+- [Model](https://github.com/kavin2006-spec/F1-race-predictor/blob/main/MODEL.md) — feature engineering, target variable, training process
+- [AI analyst](https://github.com/kavin2006-spec/F1-race-predictor/blob/main/CHATBOT.md) — how the LLM context system works
 
 ## Developement notes
 This project was built with significant assistance from Claude (Anthropic) as an AI pair programmer. Claude helped with architecture decisions, debugging, code generation, and feature engineering ideas throughout the build process.

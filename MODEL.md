@@ -110,15 +110,14 @@ MAE 1.80 means average error of ~1.8 positions. **81.9% within 3 positions** is 
 
 ## Feature Importances
 
-grid_pos ████████████████ 0.385
-weighted_avg_finish ████████████ 0.317
-championship_rank_pre_race ██ 0.039
-quali_gap_pct ██ 0.039
-avg_teammate_quali_gap_last_3 █ 0.028
-avg_finish_last_5 █ 0.028
-... (full list in training logs)
+grid_pos ████████████████ 0.385    
+weighted_avg_finish ████████████ 0.317  
+championship_rank_pre_race ██ 0.039  
+quali_gap_pct ██ 0.039  
+avg_teammate_quali_gap_last_3 █ 0.028  
+avg_finish_last_5 █ 0.028  
+... (full list in training logs)  
 
-text
 
 ## Live Prediction Flow
 
@@ -132,7 +131,7 @@ Model uses only **pre-race information** — no live telemetry by design.
 
 The model has reached **~85% of theoretical maximum** for pre-race (post-qualifying) prediction. Remaining possible gains:
 
-### High Impact (10-20 hours each)
+### Possible high Impact 
 1. **Pit Stop Strategy** (+4-6% accuracy)  
    Model optimal stint length and pit timing from FastF1 stint data
 2. **Tyre Degradation** (+3-5%)  
